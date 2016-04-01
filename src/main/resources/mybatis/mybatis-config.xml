@@ -32,19 +32,5 @@
     </environments>
     <mappers>
         <mapper resource="mybatis/UserMapper.xml"/>
-        <mapper resource="mybatis/QuizItemMapper.xml"/>
-        <mapper resource="mybatis/PaperMapper.xml"/>
-        <mapper resource="mybatis/BlankQuizMapper.xml"></mapper>
-        <mapper resource="mybatis/SectionMapper.xml"></mapper>
-        <mapper resource="mybatis/SectionQuizMapper.xml"></mapper>
-        <mapper resource="mybatis/ScoreSheetMapper.xml"></mapper>
-        <mapper resource="mybatis/ItemPostMapper.xml"></mapper>
-        <mapper resource="mybatis/BlankQuizSubmitMapper.xml"></mapper>
-        <mapper resource="mybatis/HomeworkQuizMapper.xml"></mapper>
-        <mapper resource="mybatis/HomeworkSubmitMapper.xml"></mapper>
-        <mapper resource="mybatis/HomeworkPostHistoryMapper.xml"></mapper>
-        <mapper resource="mybatis/LoginDetailMapper.xml"></mapper>
-        <mapper resource="mybatis/PasswordRetrieveDetailMapper.xml"></mapper>
-        <mapper resource="mybatis/GithubUserMapper.xml"></mapper>
     </mappers>
 </configuration>
