@@ -49,6 +49,7 @@ fabric.properties
 
 ### Intellij Patch ###
 *.iml
+*.ipr
 
 
 ### OSX ###
