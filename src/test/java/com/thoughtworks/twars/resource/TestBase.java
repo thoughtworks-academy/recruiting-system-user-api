@@ -15,6 +15,7 @@ public class TestBase extends JerseyTest {
 
     protected SqlSessionManager sqlSessionManager = mock(SqlSessionManager.class);
     protected UserMapper userMapper = mock(UserMapper.class);
+    protected GroupMapper groupMapper = mock(GroupMapper.class);
 
     @Override
     protected Application configure() {
@@ -26,6 +27,7 @@ public class TestBase extends JerseyTest {
             @Override
             protected void configure() {
                 bind(userMapper).to(UserMapper.class);
+                bind(groupMapper).to(GroupMapper.class);
                 bind(sqlSessionManager).to(SqlSessionManager.class);
             }
         }).packages("com.thoughtworks.twars.resource");

@@ -19,6 +19,8 @@ public class App extends ResourceConfig {
 
         final UserMapper userMapper = session
                 .getMapper(UserMapper.class);
+        final GroupMapper groupMapper = session
+                .getMapper(GroupMapper.class);
 
         register(OpenSessionRequestFilter.class);
         register(CloseSessionResponseFilter.class);
@@ -28,6 +30,7 @@ public class App extends ResourceConfig {
                     @Override
                     protected void configure() {
                         bind(userMapper).to(UserMapper.class);
+                        bind(groupMapper).to(GroupMapper.class);
                         bind(session).to(SqlSessionManager.class);
                     }
                 });

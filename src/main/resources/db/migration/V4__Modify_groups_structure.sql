@@ -1,2 +1,4 @@
-ALTER TABLE quizItem
-ADD COLUMN infoPath VARCHAR(128)
+ALTER TABLE `group`
+ADD COLUMN `avatar` VARCHAR(128),
+ADD COLUMN `announcement` TEXT,
+ADD COLUMN `isAnnouncePublished` BOOLEAN

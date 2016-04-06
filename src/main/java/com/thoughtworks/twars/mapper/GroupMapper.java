@@ -1,7 +1,7 @@
 package com.thoughtworks.twars.mapper;
 
-/**
- * Created by Jessica on 4/6/16.
- */
+import com.thoughtworks.twars.bean.Group;
+
 public interface GroupMapper {
+    int insertGroup(Group group);
 }
