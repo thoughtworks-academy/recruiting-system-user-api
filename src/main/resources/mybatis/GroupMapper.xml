@@ -7,4 +7,8 @@
         INSERT INTO `group`(name, adminId, avatar, announcement, isAnnouncePublished)
         VALUES(#{name}, #{adminId}, #{avatar}, #{announcement}, #{isAnnouncePublished})
     </insert>
+
+    <select id="getGroupById" resultType="com.thoughtworks.twars.bean.Group">
+        select id, name, avatar, announcement, isAnnouncePublished from `group` where id = #{id}
+    </select>
 </mapper>

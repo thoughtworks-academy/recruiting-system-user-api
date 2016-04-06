@@ -27,6 +27,24 @@ public class GroupResource extends Resource{
 
         return Response.status(Response.Status.CREATED).entity(map).build();
     }
+
+    @GET
+    @Path("/{param}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getGroup(
+            @PathParam("param") int groupId) {
+        Group group = groupMapper.getGroupById(groupId);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("id", group.getId());
+        map.put("name", group.getName());
+        map.put("avatar", group.getAvatar());
+        map.put("adminId", group.getAdminId());
+        map.put("announcement", group.getAnnouncement());
+        map.put("isAnnouncePublished", group.getIsAnnouncePublished());
+
+        return Response.status(Response.Status.OK).entity(map).build();
+    }
 }
 
 

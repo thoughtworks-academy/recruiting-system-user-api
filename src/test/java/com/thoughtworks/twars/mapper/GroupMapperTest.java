@@ -28,4 +28,10 @@ public class GroupMapperTest extends TestBase{
         groupMapper.insertGroup(group);
         assertThat(group.getId(), is(6));
     }
+
+    @Test
+    public void should_return_group_by_id() throws Exception{
+        Group group = groupMapper.getGroupById(1);
+        assertThat(group.getName(), is("HTML小组"));
+    }
 }
