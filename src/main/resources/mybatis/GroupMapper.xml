@@ -11,4 +11,9 @@
     <select id="getGroupById" resultType="com.thoughtworks.twars.bean.Group">
         select id, name, avatar, announcement, isAnnouncePublished from `group` where id = #{id}
     </select>
+
+    <update id="updateGroup" parameterType="com.thoughtworks.twars.bean.Group">
+        UPDATE `group` SET avatar=#{avatar}, announcement=#{announcement}, isAnnouncePublished=#{isAnnouncePublished} WHERE id = #{id};
+    </update>
+
 </mapper>

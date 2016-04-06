@@ -45,6 +45,22 @@ public class GroupResource extends Resource{
 
         return Response.status(Response.Status.OK).entity(map).build();
     }
+
+    @PUT
+    @Path("/{param}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateGroup(
+            @PathParam("param") int groupId,
+            Group group
+    ) {
+        groupMapper.updateGroup(group);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("uri", "/groups/" + group.getId());
+
+        return Response.status(Response.Status.OK).entity(map).build();
+    }
 }
 
 

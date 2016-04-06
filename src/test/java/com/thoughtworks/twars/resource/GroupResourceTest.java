@@ -66,6 +66,25 @@ public class GroupResourceTest  extends TestBase{
         assertThat(result.get("avatar"), is("我有一个好看的头像"));
         assertThat(result.get("announcement"), is("公告说些什么"));
         assertThat(result.get("isAnnouncePublished"), is(false));
+    }
 
+    @Test
+    public void should_update_group() throws Exception {
+        Group updateGroup = new Group();
+
+        updateGroup.setId(1);
+        updateGroup.setAvatar("头像哦吼吼");
+        updateGroup.setAnnouncement("公公告告");
+        updateGroup.setIsAnnouncePublished(true);
+
+        Entity<Group> entityGroup = Entity.entity(updateGroup,
+                MediaType.APPLICATION_JSON_TYPE);
+
+        Response response = target(basePath + "/1").request().put(entityGroup);
+
+        assertThat(response.getStatus(), is(200));
+
+        Map result = response.readEntity(Map.class);
+        assertThat(result.get("uri"), is("/groups/1"));
     }
 }
