@@ -23,7 +23,7 @@ public class GroupMapperTest extends TestBase{
         group.setName("js学习小组");
         group.setAvatar("头像头像头像");
         group.setAnnouncement("公告公告公告");
-        group.setAnnouncePublished(true);
+        group.setIsAnnouncePublished(true);
 
         groupMapper.insertGroup(group);
         assertThat(group.getId(), is(6));

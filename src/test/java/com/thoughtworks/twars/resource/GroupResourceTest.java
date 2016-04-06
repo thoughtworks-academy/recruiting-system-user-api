@@ -30,7 +30,7 @@ public class GroupResourceTest  extends TestBase{
         insertGroup.setAdminId(1);
         insertGroup.setAvatar("avatar");
         insertGroup.setAnnouncement("announce");
-        insertGroup.setAnnouncePublished(false);
+        insertGroup.setIsAnnouncePublished(false);
 
         Entity<Group> entityGroup = Entity.entity(insertGroup,
                 MediaType.APPLICATION_JSON_TYPE);
