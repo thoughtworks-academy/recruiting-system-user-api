@@ -35,6 +35,10 @@ public class GroupResource extends Resource{
             @PathParam("param") int groupId) {
         Group group = groupMapper.getGroupById(groupId);
 
+        if (group == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
         Map<String,Object> map = new HashMap<>();
         map.put("id", group.getId());
         map.put("name", group.getName());

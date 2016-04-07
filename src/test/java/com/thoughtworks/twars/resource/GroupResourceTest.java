@@ -69,6 +69,15 @@ public class GroupResourceTest  extends TestBase{
     }
 
     @Test
+    public void should_return_404_when_get_no_group() throws Exception{
+        when(groupMapper.getGroupById(99)).thenReturn(null);
+
+        Response response = target(basePath + "/99").request().get();
+
+        assertThat(response.getStatus(), is(404));
+    }
+
+    @Test
     public void should_update_group() throws Exception {
         Group updateGroup = new Group();
 
