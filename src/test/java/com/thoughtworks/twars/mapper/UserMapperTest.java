@@ -1,6 +1,9 @@
 package com.thoughtworks.twars.mapper;
 
+import com.thoughtworks.twars.bean.Group;
+import com.thoughtworks.twars.bean.GroupUsers;
 import com.thoughtworks.twars.bean.User;
+import io.swagger.models.auth.In;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -127,5 +130,22 @@ public class UserMapperTest extends TestBase {
         List<User> users = userMapper.findUsersByUserIds(userIds);
 
         assertThat(userIds.size(), is(3));
+    }
+
+    @Test
+    public void should_return_user_groups() {
+        List<Integer> groupIds = userMapper.findUserGroupsByUserId(1);
+        assertThat(groupIds.size(), is(1));
+    }
+
+    @Test
+    public void should_return_groups() {
+        List<Integer> groupIds = new ArrayList<>();
+        groupIds.add(1);
+        groupIds.add(2);
+        groupIds.add(3);
+
+        List<Group> groups = userMapper.findGroupsByGroupId(groupIds);
+        assertThat(groups.size(), is(3));
     }
 }
