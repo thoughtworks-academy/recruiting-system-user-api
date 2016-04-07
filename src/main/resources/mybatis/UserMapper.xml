@@ -10,6 +10,16 @@
         <result column="mobilePhone" property="mobilePhone"></result>
     </resultMap>
 
+    <resultMap id="groupUsersMap" type="com.thoughtworks.twars.bean.GroupUsers">
+        <result column="groupId" property="groupId"></result>
+    </resultMap>
+
+    <resultMap id="groupMap" type="com.thoughtworks.twars.bean.Group">
+        <id property="id" column="id"></id>
+        <result column="name" property="name"></result>
+        <result column="avatar" property="avatar"></result>
+    </resultMap>
+
     <select id="getUserById" resultType="com.thoughtworks.twars.bean.User">
         select id, password, email, mobilePhone, ifnull(role, "2") role from users where id = #{id}
     </select>
@@ -49,6 +59,17 @@
         SELECT * FROM users WHERE id IN
         <foreach item="userIds" index="index" collection="list" open="(" separator="," close=")">
             #{userIds}
+        </foreach>
+    </select>
+
+    <select id="findUserGroupsByUserId" resultMap="groupUsersMap">
+        SELECT groupId FROM groupUsers WHERE userId = #{userId}
+    </select>
+
+    <select id="findGroupsByGroupId" resultMap="groupMap">
+        SELECT * FROM `group` WHERE id IN
+        <foreach collection="list" item="groupIds" index="index" open="(" separator="," close=")">
+            #{groupIds}
         </foreach>
     </select>
 </mapper>
