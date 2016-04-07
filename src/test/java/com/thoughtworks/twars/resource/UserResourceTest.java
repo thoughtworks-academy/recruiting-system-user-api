@@ -138,6 +138,6 @@ public class UserResourceTest extends TestBase {
         Gson gson = new GsonBuilder().create();
         String jsonStr = gson.toJson(result);
 
-        assertThat(jsonStr, is("[{\"groupName\":\"js 交流小组\",\"groupId\":1,\"groupAvatar\":\"./beautiful.jpg\"}]"));
+        assertThat(jsonStr, is("[{\"name\":\"js 交流小组\",\"id\":1,\"avatar\":\"./beautiful.jpg\"}]"));
     }
 }

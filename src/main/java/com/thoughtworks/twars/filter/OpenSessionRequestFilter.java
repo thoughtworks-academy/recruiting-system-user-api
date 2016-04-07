@@ -12,7 +12,8 @@ public class OpenSessionRequestFilter  implements ContainerResponseFilter {
     SqlSessionManager session;
 
     @Override
-    public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) {
+    public void filter(ContainerRequestContext requestContext,
+                       ContainerResponseContext responseContext) {
         session.startManagedSession();
     }
 }
