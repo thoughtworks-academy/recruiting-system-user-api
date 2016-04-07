@@ -12,15 +12,14 @@ import java.util.*;
 
 @Path("/groups")
 @Api
-public class GroupResource extends Resource{
+public class GroupResource extends Resource {
     @Inject
     private GroupMapper groupMapper;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createGroup(Group group)
-    {
+    public Response createGroup(Group group) {
         groupMapper.insertGroup(group);
         Map<String, String> map = new HashMap<>();
         map.put("uri", "/groups/" + group.getId());
