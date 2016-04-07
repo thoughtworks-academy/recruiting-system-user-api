@@ -1,5 +1,7 @@
 package com.thoughtworks.twars.resource;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.thoughtworks.twars.bean.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,8 +10,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
@@ -22,6 +23,7 @@ import static org.mockito.Mockito.when;
 public class UserResourceTest extends TestBase {
 
     User user = mock(User.class);
+    Group group = mock(Group.class);
 
     String basePath = "/users";
 
@@ -115,5 +117,27 @@ public class UserResourceTest extends TestBase {
         Response response = target(basePath + "/1/password").request().put(entity);
 
         assertThat(response.getStatus(), is(200));
+    }
+
+    @Test
+    public void should_return_groups() throws Exception {
+        List<Integer> groupIds = new ArrayList<>();
+        groupIds.add(1);
+        groupIds.add(2);
+        when(userMapper.findUserGroupsByUserId(1)).thenReturn(groupIds);
+        when(userMapper.findGroupsByGroupId(groupIds)).thenReturn(Arrays.asList(group));
+        when(group.getId()).thenReturn(1);
+        when(group.getName()).thenReturn("js 交流小组");
+        when(group.getAvatar()).thenReturn("./beautiful.jpg");
+
+        Response response = target(basePath + "/1/groups").request().get();
+
+        assertThat(response.getStatus(), is(200));
+
+        Map result = response.readEntity(Map.class);
+        Gson gson = new GsonBuilder().create();
+        String jsonStr = gson.toJson(result);
+
+        assertThat(jsonStr, is("{\"groups\":[{\"groupName\":\"js 交流小组\",\"groupId\":1,\"groupAvatar\":\"./beautiful.jpg\"}],\"userId\":1}"));
     }
 }
