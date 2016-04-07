@@ -9,6 +9,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Path("/users")
 @Api
@@ -40,6 +41,29 @@ public class UserResource extends Resource {
         return Response.status(Response.Status.OK).entity(map).build();
     }
 
+    @GET
+    @Path("/{param}/groups")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getGroupsByUserId(
+            @PathParam("param") int userId) {
+        List<Integer> groupIds = userMapper.findUserGroupsByUserId(userId);
+        List<Group> groups = userMapper.findGroupsByGroupId(groupIds);
+
+        Map result = new HashMap<>();
+        List<Map> groupResult = groups.stream()
+                .map(group -> {
+                    Map groupMap = new HashMap();
+                    groupMap.put("groupId", group.getId());
+                    groupMap.put("groupName", group.getName());
+                    groupMap.put("groupAvatar", group.getAvatar());
+                    return groupMap;
+                }).collect(Collectors.toList());
+
+        result.put("userId",userId);
+        result.put("groups", groupResult);
+
+        return Response.status(Response.Status.OK).entity(result).build();
+    }
 
     @GET
     @ApiImplicitParams(value = {
