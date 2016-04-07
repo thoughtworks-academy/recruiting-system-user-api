@@ -64,6 +64,17 @@ public class GroupResource extends Resource {
 
         return Response.status(Response.Status.OK).entity(map).build();
     }
+
+    @GET
+    @Path("{param}/papers")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPaper(
+            @PathParam("param") int groupId
+    ) {
+        List<Integer> paper = groupMapper.getPaperIdByGroup(groupId);
+
+        return Response.status(Response.Status.OK).entity(paper).build();
+    }
 }
 
 

@@ -1,5 +1,7 @@
 package com.thoughtworks.twars.resource;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.thoughtworks.twars.bean.Group;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +12,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -95,5 +99,23 @@ public class GroupResourceTest  extends TestBase{
 
         Map result = response.readEntity(Map.class);
         assertThat(result.get("uri"), is("/groups/1"));
+    }
+
+    @Test
+    public void should_get_paper_id_by_group() throws Exception {
+        List<Integer> paperIds = new ArrayList<>();
+        paperIds.add(1);
+        paperIds.add(2);
+
+        when(groupMapper.getPaperIdByGroup(1)).thenReturn(paperIds);
+
+        Response response = target(basePath + "/1/papers").request().get();
+        assertThat(response.getStatus(), is(200));
+
+        List<Integer> result = response.readEntity(List.class);
+        Gson gson = new GsonBuilder().create();
+        String jsonStr = gson.toJson(result);
+
+        assertThat(jsonStr, is("[1,2]"));
     }
 }

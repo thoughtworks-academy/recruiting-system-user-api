@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtworks.twars.mapper.GroupMapper">
+    <resultMap id="paperMap" type="com.thoughtworks.twars.bean.GroupPapers">
+        <result column="groupId" property="groupId"></result>
+    </resultMap>
+
     <insert id="insertGroup" parameterType="com.thoughtworks.twars.bean.Group" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `group`(name, adminId, avatar, announcement, isAnnouncePublished)
         VALUES(#{name}, #{adminId}, #{avatar}, #{announcement}, #{isAnnouncePublished})
@@ -16,4 +20,7 @@
         UPDATE `group` SET avatar=#{avatar}, announcement=#{announcement}, isAnnouncePublished=#{isAnnouncePublished} WHERE id = #{id};
     </update>
 
+    <select id="getPaperIdByGroup" resultMap="paperMap">
+        SELECT paperId FROM groupPapers WHERE groupId=#{groupId};
+    </select>
 </mapper>

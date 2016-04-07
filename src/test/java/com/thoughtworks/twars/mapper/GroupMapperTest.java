@@ -4,6 +4,8 @@ import com.thoughtworks.twars.bean.Group;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -48,5 +50,12 @@ public class GroupMapperTest extends TestBase{
 
         assertThat(group.getAnnouncement(), is("好长好长的公告"));
 
+    }
+
+    @Test
+    public void should_get_paper_id_by_group() throws Exception{
+        List<Integer> group = groupMapper.getPaperIdByGroup(1);
+
+        assertThat(group.size(), is(2));
     }
 }
