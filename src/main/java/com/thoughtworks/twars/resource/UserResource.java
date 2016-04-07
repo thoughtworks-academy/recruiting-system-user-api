@@ -49,20 +49,16 @@ public class UserResource extends Resource {
         List<Integer> groupIds = userMapper.findUserGroupsByUserId(userId);
         List<Group> groups = userMapper.findGroupsByGroupId(groupIds);
 
-        Map result = new HashMap<>();
         List<Map> groupResult = groups.stream()
                 .map(group -> {
                     Map groupMap = new HashMap();
-                    groupMap.put("groupId", group.getId());
-                    groupMap.put("groupName", group.getName());
-                    groupMap.put("groupAvatar", group.getAvatar());
+                    groupMap.put("id", group.getId());
+                    groupMap.put("name", group.getName());
+                    groupMap.put("avatar", group.getAvatar());
                     return groupMap;
                 }).collect(Collectors.toList());
 
-        result.put("userId",userId);
-        result.put("groups", groupResult);
-
-        return Response.status(Response.Status.OK).entity(result).build();
+        return Response.status(Response.Status.OK).entity(groupResult).build();
     }
 
     @GET

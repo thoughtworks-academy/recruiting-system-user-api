@@ -134,10 +134,10 @@ public class UserResourceTest extends TestBase {
 
         assertThat(response.getStatus(), is(200));
 
-        Map result = response.readEntity(Map.class);
+        List<Map> result = response.readEntity(List.class);
         Gson gson = new GsonBuilder().create();
         String jsonStr = gson.toJson(result);
 
-        assertThat(jsonStr, is("{\"groups\":[{\"groupName\":\"js 交流小组\",\"groupId\":1,\"groupAvatar\":\"./beautiful.jpg\"}],\"userId\":1}"));
+        assertThat(jsonStr, is("[{\"groupName\":\"js 交流小组\",\"groupId\":1,\"groupAvatar\":\"./beautiful.jpg\"}]"));
     }
 }

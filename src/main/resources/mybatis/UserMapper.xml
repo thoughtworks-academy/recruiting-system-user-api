@@ -10,7 +10,7 @@
         <result column="mobilePhone" property="mobilePhone"></result>
     </resultMap>
 
-    <resultMap id="groupUsersMap" type="com.thoughtworks.twars.bean.GroupUsers">
+    <resultMap id="groupUsersMap" type="int">
         <result column="groupId" property="groupId"></result>
     </resultMap>
 
