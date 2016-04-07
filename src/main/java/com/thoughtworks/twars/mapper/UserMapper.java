@@ -1,5 +1,7 @@
 package com.thoughtworks.twars.mapper;
 
+import com.thoughtworks.twars.bean.Group;
+import com.thoughtworks.twars.bean.GroupUsers;
 import com.thoughtworks.twars.bean.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,8 @@ public interface UserMapper {
     int resetPassword(User user);
 
     List<User> findUsersByUserIds(List<Integer> userIds);
+
+    List<Integer> findUserGroupsByUserId(int userId);
+
+    List<Group> findGroupsByGroupId(List<Integer> groupIds);
 }
