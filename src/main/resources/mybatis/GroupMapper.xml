@@ -20,6 +20,10 @@
         UPDATE `group` SET avatar=#{avatar}, announcement=#{announcement}, isAnnouncePublished=#{isAnnouncePublished} WHERE id = #{id};
     </update>
 
+    <select id="findUserNumberByGroup" resultType="int">
+        SELECT COUNT(*) FROM groupUsers WHERE groupId = #{groupId}
+    </select>
+
     <select id="getPaperIdByGroup" resultMap="paperMap">
         SELECT paperId FROM groupPapers WHERE groupId=#{groupId};
     </select>
