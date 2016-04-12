@@ -45,7 +45,6 @@ public class GroupResource extends Resource {
         map.put("adminId", group.getAdminId());
         map.put("announcement", group.getAnnouncement());
         map.put("isAnnouncePublished", group.getIsAnnouncePublished());
-        map.put("memberNumber", group.getMemberNumber());
 
         return Response.status(Response.Status.OK).entity(map).build();
     }
