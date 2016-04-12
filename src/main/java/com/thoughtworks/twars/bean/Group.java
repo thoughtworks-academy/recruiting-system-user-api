@@ -7,6 +7,7 @@ public class Group {
     private String avatar;
     private String announcement;
     private boolean isAnnouncePublished;
+    private int memberNumber;
 
     public int getId() {
         return id;
@@ -55,5 +56,13 @@ public class Group {
 
     public void setIsAnnouncePublished(boolean isAnnouncePublished) {
         isAnnouncePublished = isAnnouncePublished;
+    }
+
+    public int getMemberNumber() {
+        return memberNumber;
+    }
+
+    public void setMemberNumber(int memberNumber) {
+        this.memberNumber = memberNumber;
     }
 }
