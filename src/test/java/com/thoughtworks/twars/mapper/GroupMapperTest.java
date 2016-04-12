@@ -57,4 +57,11 @@ public class GroupMapperTest extends TestBase{
 
         assertThat(group.size(), is(2));
     }
+
+    @Test
+    public void should_return_user_number() throws Exception{
+        int userNumber = groupMapper.findUserNumberByGroup(1);
+
+        assertThat(userNumber, is(1));
+    }
 }

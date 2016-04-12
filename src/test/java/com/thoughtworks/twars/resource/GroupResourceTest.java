@@ -50,6 +50,7 @@ public class GroupResourceTest  extends TestBase{
     @Test
     public void should_return_group_by_id() throws Exception{
         when(groupMapper.getGroupById(1)).thenReturn(group);
+        when(groupMapper.findUserNumberByGroup(1)).thenReturn(1);
 
         when(group.getId()).thenReturn(1);
         when(group.getName()).thenReturn("html学习小组");
@@ -70,6 +71,7 @@ public class GroupResourceTest  extends TestBase{
         assertThat(result.get("avatar"), is("我有一个好看的头像"));
         assertThat(result.get("announcement"), is("公告说些什么"));
         assertThat(result.get("isAnnouncePublished"), is(false));
+        assertThat(result.get("memberNumber"), is(1));
     }
 
     @Test

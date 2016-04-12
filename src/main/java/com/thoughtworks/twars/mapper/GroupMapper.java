@@ -12,4 +12,6 @@ public interface GroupMapper {
     int updateGroup(Group group);
     
     List<Integer> getPaperIdByGroup(int groupId);
+
+    int findUserNumberByGroup(int groupId);
 }
