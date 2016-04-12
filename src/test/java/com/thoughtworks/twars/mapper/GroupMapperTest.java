@@ -45,11 +45,12 @@ public class GroupMapperTest extends TestBase{
         group.setAvatar("头像头像");
         group.setAnnouncement("好长好长的公告");
         group.setIsAnnouncePublished(true);
+        group.setMemberNumber(9);
 
         groupMapper.updateGroup(group);
 
         assertThat(group.getAnnouncement(), is("好长好长的公告"));
-
+        assertThat(group.getMemberNumber(), is(9));
     }
 
     @Test

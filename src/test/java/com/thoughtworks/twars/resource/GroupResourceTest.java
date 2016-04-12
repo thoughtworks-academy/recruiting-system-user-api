@@ -57,6 +57,7 @@ public class GroupResourceTest  extends TestBase{
         when(group.getAvatar()).thenReturn("我有一个好看的头像");
         when(group.getAnnouncement()).thenReturn("公告说些什么");
         when(group.getIsAnnouncePublished()).thenReturn(false);
+        when(group.getMemberNumber()).thenReturn(10);
 
         Response response = target(basePath + "/1").request().get();
 
@@ -70,6 +71,7 @@ public class GroupResourceTest  extends TestBase{
         assertThat(result.get("avatar"), is("我有一个好看的头像"));
         assertThat(result.get("announcement"), is("公告说些什么"));
         assertThat(result.get("isAnnouncePublished"), is(false));
+        assertThat(result.get("memberNumber"), is(10));
     }
 
     @Test
