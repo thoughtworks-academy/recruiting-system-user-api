@@ -46,6 +46,7 @@ public class UserResource extends Resource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getGroupsByUserId(
             @PathParam("param") int userId) {
+        System.out.println("1kfeajiwf");
         List<Integer> groupIds = userMapper.findUserGroupsByUserId(userId);
         List<Group> groups = userMapper.findGroupsByGroupId(groupIds);
 
