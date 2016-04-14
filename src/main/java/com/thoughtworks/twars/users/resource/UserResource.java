@@ -2,6 +2,7 @@ package com.thoughtworks.twars.users.resource;
 
 import com.thoughtworks.twars.users.bean.Group;
 import com.thoughtworks.twars.users.bean.User;
+import com.thoughtworks.twars.users.mapper.GroupMapper;
 import com.thoughtworks.twars.users.mapper.UserMapper;
 import io.swagger.annotations.*;
 

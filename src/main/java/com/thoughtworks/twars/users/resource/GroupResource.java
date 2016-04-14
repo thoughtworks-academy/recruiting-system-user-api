@@ -33,20 +33,21 @@ public class GroupResource extends Resource {
     public Response getGroup(
             @PathParam("param") int groupId) {
         Group group = groupMapper.getGroupById(groupId);
-        int userNumber = groupMapper.findUserNumberByGroup(groupId);
 
         if (group == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
+        int userNumber = groupMapper.findUserNumberByGroup(groupId);
 
         Map map = new HashMap<>();
+        map.put("memberNumber", userNumber);
         map.put("id", group.getId());
         map.put("name", group.getName());
         map.put("avatar", group.getAvatar());
         map.put("adminId", group.getAdminId());
         map.put("announcement", group.getAnnouncement());
         map.put("isAnnouncePublished", group.getIsAnnouncePublished());
-        map.put("memberNumber", userNumber);
+
 
         return Response.status(Response.Status.OK).entity(map).build();
     }

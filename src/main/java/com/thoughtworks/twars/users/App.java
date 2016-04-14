@@ -26,7 +26,7 @@ public class App extends ResourceConfig {
         register(OpenSessionRequestFilter.class);
         register(CloseSessionResponseFilter.class);
 
-        packages("com.thoughtworks.twars.resource")
+        packages("com.thoughtworks.twars.users.resource")
                 .register(new AbstractBinder() {
                     @Override
                     protected void configure() {

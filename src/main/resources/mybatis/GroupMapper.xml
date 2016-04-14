@@ -12,7 +12,7 @@
         <result column="announcement" property="announcement"></result>
     </resultMap>
 
-    <insert id="insertGroup" parameterType="com.thoughtworks.twars.bean.users.Group" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertGroup" parameterType="com.thoughtworks.twars.users.bean.Group" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `group`(name, adminId, avatar, announcement, isAnnouncePublished)
         VALUES(#{name}, #{adminId}, #{avatar}, #{announcement}, #{isAnnouncePublished})
     </insert>
