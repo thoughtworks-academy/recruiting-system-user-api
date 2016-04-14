@@ -124,11 +124,13 @@ public class UserResourceTest extends TestBase {
         List<Integer> groupIds = new ArrayList<>();
         groupIds.add(1);
         groupIds.add(2);
+        when(userMapper.getUserById(1)).thenReturn(user);
         when(userMapper.findUserGroupsByUserId(1)).thenReturn(groupIds);
         when(userMapper.findGroupsByGroupId(groupIds)).thenReturn(Arrays.asList(group));
         when(group.getId()).thenReturn(1);
         when(group.getName()).thenReturn("js 交流小组");
         when(group.getAvatar()).thenReturn("./beautiful.jpg");
+        when(user.getRole()).thenReturn("2");
 
         Response response = target(basePath + "/1/groups").request().get();
 
