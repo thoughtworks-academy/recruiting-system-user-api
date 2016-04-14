@@ -9,6 +9,8 @@ public interface GroupMapper {
 
     Group getGroupById(int id);
 
+    List<Group> getGroupsByUserId(int userId);
+
     int updateGroup(Group group);
     
     List<Integer> getPaperIdByGroup(int groupId);
