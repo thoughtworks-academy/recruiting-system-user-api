@@ -64,4 +64,11 @@ public class GroupMapperTest extends TestBase{
 
         assertThat(userNumber, is(1));
     }
+
+    @Test
+    public void shoule_return_group_list() throws Exception{
+        List<Group> groupList = groupMapper.getGroupsByUserId(1);
+
+        assertThat(groupList.size(), is(5));
+    }
 }
