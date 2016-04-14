@@ -7,6 +7,12 @@
         <result column="paperId" property="paperId"></result>
     </resultMap>
 
+    <resultMap id="groupMap" type="com.thoughtworks.twars.bean.Group">
+        <result column="name" property="name"></result>
+        <result column="avatar" property="avatar"></result>
+        <result column="announcement" property="announcement"></result>
+    </resultMap>
+
     <insert id="insertGroup" parameterType="com.thoughtworks.twars.bean.Group" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `group`(name, adminId, avatar, announcement, isAnnouncePublished)
         VALUES(#{name}, #{adminId}, #{avatar}, #{announcement}, #{isAnnouncePublished})
@@ -26,5 +32,9 @@
 
     <select id="getPaperIdByGroup" resultMap="paperMap">
         SELECT paperId FROM groupPapers WHERE groupId=#{groupId};
+    </select>
+
+    <select id="getGroupsByUserId" resultMap="groupMap">
+        SELECT * FROM `group` WHERE adminId = #{userId}
     </select>
 </mapper>
