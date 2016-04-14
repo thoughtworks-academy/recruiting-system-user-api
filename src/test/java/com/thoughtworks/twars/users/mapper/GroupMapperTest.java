@@ -1,6 +1,6 @@
-package com.thoughtworks.twars.mapper;
+package com.thoughtworks.twars.users.mapper;
 
-import com.thoughtworks.twars.bean.Group;
+import com.thoughtworks.twars.users.bean.Group;
 import org.junit.Before;
 import org.junit.Test;
 

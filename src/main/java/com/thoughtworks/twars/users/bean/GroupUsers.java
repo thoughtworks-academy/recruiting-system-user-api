@@ -1,4 +1,4 @@
-package com.thoughtworks.twars.bean;
+package com.thoughtworks.twars.users.bean;
 
 public class GroupUsers {
     private int groupId;

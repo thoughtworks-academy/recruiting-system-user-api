@@ -7,7 +7,7 @@
     <environments default="default">
         <environment id="default">
             <transactionManager type="JDBC"/>
-            <dataSource type="com.thoughtworks.twars.util.C3P0DataSourceFactory">
+            <dataSource type="com.thoughtworks.twars.users.util.C3P0DataSourceFactory">
                 <property name="driverClass" value="com.mysql.jdbc.Driver"/>
                 <property name="jdbcUrl"
                           value="${jdbc.url}"/>

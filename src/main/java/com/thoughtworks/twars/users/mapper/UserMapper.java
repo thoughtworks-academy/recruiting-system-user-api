@@ -1,8 +1,7 @@
-package com.thoughtworks.twars.mapper;
+package com.thoughtworks.twars.users.mapper;
 
-import com.thoughtworks.twars.bean.Group;
-import com.thoughtworks.twars.bean.GroupUsers;
-import com.thoughtworks.twars.bean.User;
+import com.thoughtworks.twars.users.bean.Group;
+import com.thoughtworks.twars.users.bean.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

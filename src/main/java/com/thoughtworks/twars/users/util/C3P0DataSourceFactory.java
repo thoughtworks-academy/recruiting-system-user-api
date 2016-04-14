@@ -1,4 +1,4 @@
-package com.thoughtworks.twars.util;
+package com.thoughtworks.twars.users.util;
 
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;

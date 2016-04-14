@@ -1,4 +1,4 @@
-package com.thoughtworks.twars.resource;
+package com.thoughtworks.twars.users.resource;
 
 import org.apache.ibatis.session.SqlSessionManager;
 import org.apache.logging.log4j.LogManager;

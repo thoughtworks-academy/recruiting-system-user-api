@@ -1,7 +1,8 @@
-package com.thoughtworks.twars.resource;
+package com.thoughtworks.twars.users.resource;
 
-import com.thoughtworks.twars.bean.*;
-import com.thoughtworks.twars.mapper.*;
+import com.thoughtworks.twars.users.bean.Group;
+import com.thoughtworks.twars.users.bean.User;
+import com.thoughtworks.twars.users.mapper.UserMapper;
 import io.swagger.annotations.*;
 
 import javax.inject.Inject;

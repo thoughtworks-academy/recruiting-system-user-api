@@ -1,6 +1,7 @@
-package com.thoughtworks.twars.resource;
+package com.thoughtworks.twars.users.resource;
 
-import com.thoughtworks.twars.mapper.*;
+import com.thoughtworks.twars.users.mapper.GroupMapper;
+import com.thoughtworks.twars.users.mapper.UserMapper;
 import org.apache.ibatis.session.SqlSessionManager;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -30,7 +31,7 @@ public class TestBase extends JerseyTest {
                 bind(groupMapper).to(GroupMapper.class);
                 bind(sqlSessionManager).to(SqlSessionManager.class);
             }
-        }).packages("com.thoughtworks.twars.resource");
+        }).packages("com.thoughtworks.twars.users.resource");
     }
 
 }

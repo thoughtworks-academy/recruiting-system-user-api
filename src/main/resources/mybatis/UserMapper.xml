@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thoughtworks.twars.mapper.UserMapper">
+<mapper namespace="com.thoughtworks.twars.users.mapper.UserMapper">
 
-    <resultMap id="userMap" type="com.thoughtworks.twars.bean.User">
+    <resultMap id="userMap" type="com.thoughtworks.twars.users.bean.User">
         <id property="id" column="id"></id>
         <result column="email" property="email"></result>
         <result column="mobilePhone" property="mobilePhone"></result>
@@ -14,35 +14,35 @@
         <result column="groupId" property="groupId"></result>
     </resultMap>
 
-    <resultMap id="groupMap" type="com.thoughtworks.twars.bean.Group">
+    <resultMap id="groupMap" type="com.thoughtworks.twars.users.bean.Group">
         <id property="id" column="id"></id>
         <result column="name" property="name"></result>
         <result column="avatar" property="avatar"></result>
     </resultMap>
 
-    <select id="getUserById" resultType="com.thoughtworks.twars.bean.User">
+    <select id="getUserById" resultType="com.thoughtworks.twars.users.bean.User">
         select id, password, email, mobilePhone, ifnull(role, "2") role from users where id = #{id}
     </select>
 
-    <select id="getUserByEmail" resultType="com.thoughtworks.twars.bean.User">
+    <select id="getUserByEmail" resultType="com.thoughtworks.twars.users.bean.User">
         select * from users where binary email = #{email} LIMIT 1
     </select>
 
-    <select id="getUserByMobilePhone" resultType="com.thoughtworks.twars.bean.User">
+    <select id="getUserByMobilePhone" resultType="com.thoughtworks.twars.users.bean.User">
         select * from users where mobilePhone = #{mobilePhone} LIMIT 1
     </select>
 
-    <select id="getUserByEmailAndPassWord" parameterType="com.thoughtworks.twars.bean.User"
-            resultType="com.thoughtworks.twars.bean.User">
+    <select id="getUserByEmailAndPassWord" parameterType="com.thoughtworks.twars.users.bean.User"
+            resultType="com.thoughtworks.twars.users.bean.User">
         SELECT * FROM users WHERE email regexp binary #{email} AND password = MD5(#{password}) LIMIT 1
     </select>
 
-    <select id="getUserByMobilePhoneAndPassWord" parameterType="com.thoughtworks.twars.bean.User"
-            resultType="com.thoughtworks.twars.bean.User">
+    <select id="getUserByMobilePhoneAndPassWord" parameterType="com.thoughtworks.twars.users.bean.User"
+            resultType="com.thoughtworks.twars.users.bean.User">
         SELECT * FROM users WHERE mobilePhone = #{email} AND password = MD5(#{password}) LIMIT 1
     </select>
 
-    <insert id="insertUser" parameterType="com.thoughtworks.twars.bean.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertUser" parameterType="com.thoughtworks.twars.users.bean.User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO users(email, mobilePhone, password, createDate, role)
         VALUES (#{email}, #{mobilePhone}, MD5(#{password}), UNIX_TIMESTAMP(), "2")
     </insert>
@@ -51,7 +51,7 @@
         UPDATE users SET password=MD5(#{password}) WHERE id = #{id} AND password=MD5(#{oldPassword});
     </update>
 
-    <update id="resetPassword" parameterType="com.thoughtworks.twars.bean.User">
+    <update id="resetPassword" parameterType="com.thoughtworks.twars.users.bean.User">
         UPDATE users SET password=MD5(#{password}) WHERE binary email= #{email};
     </update>
 

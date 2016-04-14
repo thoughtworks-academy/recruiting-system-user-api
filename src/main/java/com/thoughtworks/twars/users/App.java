@@ -1,9 +1,10 @@
-package com.thoughtworks.twars;
+package com.thoughtworks.twars.users;
 
-import com.thoughtworks.twars.filter.CloseSessionResponseFilter;
-import com.thoughtworks.twars.filter.OpenSessionRequestFilter;
-import com.thoughtworks.twars.mapper.*;
-import com.thoughtworks.twars.util.DBUtil;
+import com.thoughtworks.twars.users.filter.CloseSessionResponseFilter;
+import com.thoughtworks.twars.users.filter.OpenSessionRequestFilter;
+import com.thoughtworks.twars.users.mapper.GroupMapper;
+import com.thoughtworks.twars.users.mapper.UserMapper;
+import com.thoughtworks.twars.users.util.DBUtil;
 import org.apache.ibatis.session.SqlSessionManager;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.server.ResourceConfig;

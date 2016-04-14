@@ -1,4 +1,4 @@
-package com.thoughtworks.twars.filter;
+package com.thoughtworks.twars.users.filter;
 
 import org.apache.ibatis.session.SqlSessionManager;
 

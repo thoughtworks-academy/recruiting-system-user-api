@@ -12,14 +12,14 @@
 
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.thoughtworks.twars.App</param-value>
+            <param-value>com.thoughtworks.twars.users.App</param-value>
         </init-param>
 
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>
                 io.swagger.jaxrs.listing,
-                com.thoughtworks.twars.App
+                com.thoughtworks.twars.users.App
             </param-value>
         </init-param>
 

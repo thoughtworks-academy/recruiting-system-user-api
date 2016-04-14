@@ -1,6 +1,6 @@
-package com.thoughtworks.twars.mapper;
+package com.thoughtworks.twars.users.mapper;
 
-import com.thoughtworks.twars.util.DBUtil;
+import com.thoughtworks.twars.users.util.DBUtil;
 import org.apache.ibatis.session.SqlSessionManager;
 import org.flywaydb.core.Flyway;
 import org.junit.After;

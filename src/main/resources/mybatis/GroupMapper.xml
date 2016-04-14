@@ -2,27 +2,26 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thoughtworks.twars.mapper.GroupMapper">
+<mapper namespace="com.thoughtworks.twars.users.mapper.GroupMapper">
     <resultMap id="paperMap" type="int">
         <result column="paperId" property="paperId"></result>
     </resultMap>
-
-    <resultMap id="groupMap" type="com.thoughtworks.twars.bean.Group">
+    <resultMap id="groupMap" type="com.thoughtworks.twars.users.bean.Group">
         <result column="name" property="name"></result>
         <result column="avatar" property="avatar"></result>
         <result column="announcement" property="announcement"></result>
     </resultMap>
 
-    <insert id="insertGroup" parameterType="com.thoughtworks.twars.bean.Group" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertGroup" parameterType="com.thoughtworks.twars.bean.users.Group" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `group`(name, adminId, avatar, announcement, isAnnouncePublished)
         VALUES(#{name}, #{adminId}, #{avatar}, #{announcement}, #{isAnnouncePublished})
     </insert>
 
-    <select id="getGroupById" resultType="com.thoughtworks.twars.bean.Group">
+    <select id="getGroupById" resultType="com.thoughtworks.twars.users.bean.Group">
         select * from `group` where id = #{id}
     </select>
 
-    <update id="updateGroup" parameterType="com.thoughtworks.twars.bean.Group">
+    <update id="updateGroup" parameterType="com.thoughtworks.twars.users.bean.Group">
         UPDATE `group` SET avatar=#{avatar}, announcement=#{announcement}, isAnnouncePublished=#{isAnnouncePublished} WHERE id = #{id};
     </update>
 

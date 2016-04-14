@@ -1,8 +1,8 @@
-package com.thoughtworks.twars.resource;
+package com.thoughtworks.twars.users.resource;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.thoughtworks.twars.bean.Group;
+import com.thoughtworks.twars.users.bean.Group;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
