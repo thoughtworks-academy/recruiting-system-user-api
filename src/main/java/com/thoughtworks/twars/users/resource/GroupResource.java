@@ -1,6 +1,7 @@
 package com.thoughtworks.twars.users.resource;
 
 import com.thoughtworks.twars.users.bean.Group;
+import com.thoughtworks.twars.users.bean.GroupUsers;
 import com.thoughtworks.twars.users.mapper.GroupMapper;
 import io.swagger.annotations.*;
 
@@ -20,7 +21,13 @@ public class GroupResource extends Resource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createGroup(Group group) {
+        GroupUsers groupUsers = new GroupUsers();
+
         groupMapper.insertGroup(group);
+        groupUsers.setGroupId(group.getId());
+        groupUsers.setUserId(group.getAdminId());
+        groupMapper.insertGroupUsers(groupUsers);
+
         Map<String, String> map = new HashMap<>();
         map.put("uri", "/groups/" + group.getId());
 
