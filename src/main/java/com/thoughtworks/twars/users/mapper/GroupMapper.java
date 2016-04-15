@@ -1,6 +1,7 @@
 package com.thoughtworks.twars.users.mapper;
 
 import com.thoughtworks.twars.users.bean.Group;
+import com.thoughtworks.twars.users.bean.GroupUsers;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface GroupMapper {
     List<Integer> getPaperIdByGroup(int groupId);
 
     int findUserNumberByGroup(int groupId);
+
+    int insertGroupUsers(GroupUsers groupUsers);
 }

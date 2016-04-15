@@ -1,6 +1,7 @@
 package com.thoughtworks.twars.users.mapper;
 
 import com.thoughtworks.twars.users.bean.Group;
+import com.thoughtworks.twars.users.bean.GroupUsers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -70,5 +71,14 @@ public class GroupMapperTest extends TestBase{
         List<Group> groupList = groupMapper.getGroupsByUserId(1);
 
         assertThat(groupList.size(), is(5));
+    }
+
+    @Test
+    public void insert_group_users() throws Exception {
+        GroupUsers groupUsers = new GroupUsers();
+        groupUsers.setGroupId(1);
+        groupUsers.setUserId(6);
+        int successLine = groupMapper.insertGroupUsers(groupUsers);
+        assertThat(successLine, is(1));
     }
 }

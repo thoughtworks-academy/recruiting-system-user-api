@@ -22,7 +22,7 @@
     </select>
 
     <update id="updateGroup" parameterType="com.thoughtworks.twars.users.bean.Group">
-        UPDATE `group` SET avatar=#{avatar}, announcement=#{announcement}, isAnnouncePublished=#{isAnnouncePublished} WHERE id = #{id};
+        UPDATE `group` SET avatar=#{avatar}, announcement=#{announcement}, isAnnouncePublished=#{isAnnouncePublished} WHERE id = #{id}
     </update>
 
     <select id="findUserNumberByGroup" resultType="int">
@@ -30,10 +30,14 @@
     </select>
 
     <select id="getPaperIdByGroup" resultMap="paperMap">
-        SELECT paperId FROM groupPapers WHERE groupId=#{groupId};
+        SELECT paperId FROM groupPapers WHERE groupId=#{groupId}
     </select>
 
     <select id="getGroupsByUserId" resultMap="groupMap">
         SELECT * FROM `group` WHERE adminId = #{userId}
     </select>
+
+    <insert id="insertGroupUsers" parameterType="com.thoughtworks.twars.users.bean.GroupUsers">
+        INSERT INTO `groupUsers`(groupId, userId) VALUES(#{groupId}, #{userId})
+    </insert>
 </mapper>
