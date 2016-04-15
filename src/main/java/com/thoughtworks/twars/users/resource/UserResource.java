@@ -19,8 +19,6 @@ public class UserResource extends Resource {
 
     @Inject
     private UserMapper userMapper;
-    @Inject
-    private GroupMapper groupMapper;
 
     @GET
     @Path("/{param}")
@@ -50,16 +48,8 @@ public class UserResource extends Resource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getGroupsByUserId(
             @PathParam("param") int userId) {
-        User user = userMapper.getUserById(userId);
-        List<Group> groupList = new ArrayList<>();
-        if (user.getRole().equals("1")) {
-            groupList = groupMapper.getGroupsByUserId(userId);
-        }
         List<Integer> groupIds = userMapper.findUserGroupsByUserId(userId);
         List<Group> groups = userMapper.findGroupsByGroupId(groupIds);
-        if (groupList.size() != 0) {
-            groups.addAll(groupList);
-        }
 
         List<Map> groupResult = groups.stream()
                 .map(group -> {
