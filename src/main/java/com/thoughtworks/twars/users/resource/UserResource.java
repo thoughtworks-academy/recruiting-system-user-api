@@ -49,6 +49,9 @@ public class UserResource extends Resource {
     public Response getGroupsByUserId(
             @PathParam("param") int userId) {
         List<Integer> groupIds = userMapper.findUserGroupsByUserId(userId);
+        if (groupIds.size() == 0) {
+            return Response.status(Response.Status.NOT_FOUND).entity(groupIds).build();
+        }
         List<Group> groups = userMapper.findGroupsByGroupId(groupIds);
 
         List<Map> groupResult = groups.stream()
