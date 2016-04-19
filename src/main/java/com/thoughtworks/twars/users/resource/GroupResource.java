@@ -67,10 +67,11 @@ public class GroupResource extends Resource {
             @PathParam("param") int groupId,
             Group group
     ) {
+        group.setId(groupId);
         groupMapper.updateGroup(group);
 
         Map<String,Object> map = new HashMap<>();
-        map.put("uri", "/groups/" + group.getId());
+        map.put("uri", "groups/" + groupId);
 
         return Response.status(Response.Status.OK).entity(map).build();
     }
