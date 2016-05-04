@@ -22,7 +22,7 @@
     </select>
 
     <update id="updateGroup" parameterType="com.thoughtworks.twars.users.bean.Group">
-        UPDATE `group` SET avatar=#{avatar}, announcement=#{announcement}, isAnnouncePublished=#{isAnnouncePublished} WHERE id = #{id}
+        UPDATE `group` SET `name`=#{name}, avatar=#{avatar}, announcement=#{announcement}, isAnnouncePublished=#{isAnnouncePublished} WHERE id = #{id}
     </update>
 
     <select id="findUserNumberByGroup" resultType="int">
