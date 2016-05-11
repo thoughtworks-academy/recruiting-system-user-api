@@ -2,7 +2,6 @@ package com.thoughtworks.twars.users.resource;
 
 import com.thoughtworks.twars.users.bean.Group;
 import com.thoughtworks.twars.users.bean.User;
-import com.thoughtworks.twars.users.mapper.GroupMapper;
 import com.thoughtworks.twars.users.mapper.UserMapper;
 import io.swagger.annotations.*;
 
@@ -10,7 +9,9 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Path("/users")
@@ -50,7 +51,7 @@ public class UserResource extends Resource {
             @PathParam("param") int userId) {
         List<Integer> groupIds = userMapper.findUserGroupsByUserId(userId);
         if (groupIds.size() == 0) {
-            return Response.status(Response.Status.NOT_FOUND).entity(groupIds).build();
+            return Response.status(Response.Status.OK).entity(groupIds).build();
         }
         List<Group> groups = userMapper.findGroupsByGroupId(groupIds);
 
