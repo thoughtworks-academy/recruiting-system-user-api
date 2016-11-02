@@ -7,43 +7,20 @@
          version='2.5'>
 
     <servlet>
-        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-name>jersey-user-demo-serlvet</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.thoughtworks.twars.users.App</param-value>
+            <param-value>com.thoughtworks.twars.App</param-value>
         </init-param>
-
-        <init-param>
-            <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>
-                io.swagger.jaxrs.listing,
-                com.thoughtworks.twars.users.App
-            </param-value>
-        </init-param>
-
 
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-name>jersey-user-demo-serlvet</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Jersey2Config</servlet-name>
-        <servlet-class>io.swagger.jersey.config.JerseyJaxrsConfig</servlet-class>
-        <init-param>
-            <param-name>api.version</param-name>
-            <param-value>1.0.0</param-value>
-        </init-param>
-        <init-param>
-            <param-name>swagger.api.basepath</param-name>
-            <param-value>http://localhost:8080/api/</param-value>
-        </init-param>
-        <load-on-startup>2</load-on-startup>
-    </servlet>
 
 </web-app>

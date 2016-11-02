@@ -2,74 +2,63 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thoughtworks.twars.users.mapper.UserMapper">
+<mapper namespace="com.thoughtworks.twars.mapper.UserMapper">
+    <resultMap id="userDetailMap" type="com.thoughtworks.twars.bean.UserDetail">
+        <id property="userId" column="userId"></id>
+        <result column="school" property="school"></result>
+        <result column="name" property="name"></result>
+        <result column="major" property="major"></result>
+        <result column="degree" property="degree"></result>
+        <result column="gender" property="gender"></result>
+        <result column="schoolProvince" property="schoolProvince"></result>
+        <result column="schoolCity" property="schoolCity"></result>
+        <result column="entranceYear" property="entranceYear"></result>
+    </resultMap>
 
-    <resultMap id="userMap" type="com.thoughtworks.twars.users.bean.User">
+    <resultMap id="userMap" type="com.thoughtworks.twars.bean.User">
         <id property="id" column="id"></id>
         <result column="email" property="email"></result>
         <result column="mobilePhone" property="mobilePhone"></result>
     </resultMap>
 
-    <resultMap id="groupUsersMap" type="int">
-        <result column="groupId" property="groupId"></result>
-    </resultMap>
-
-    <resultMap id="groupMap" type="com.thoughtworks.twars.users.bean.Group">
-        <id property="id" column="id"></id>
-        <result column="name" property="name"></result>
-        <result column="avatar" property="avatar"></result>
-    </resultMap>
-
-    <select id="getUserById" resultType="com.thoughtworks.twars.users.bean.User">
-        select id, password, email, mobilePhone, ifnull(role, "2") role from users where id = #{id}
+    <select id="getUserById" resultType="com.thoughtworks.twars.bean.User">
+        select * from users where id = #{id}
     </select>
 
-    <select id="getUserByEmail" resultType="com.thoughtworks.twars.users.bean.User">
-        select * from users where binary email = #{email} LIMIT 1
+    <insert id="updateUserDetail" parameterType="com.thoughtworks.twars.bean.UserDetail" useGeneratedKeys="true"
+            keyProperty="userId">
+        REPLACE INTO userDetail(userId,name,major,school,gender,degree,schoolProvince,schoolCity,entranceYear) values(#{userId}, #{name},#{major}, #{school}, #{gender}, #{degree},#{schoolProvince},#{schoolCity},#{entranceYear})
+    </insert>
+
+    <select id="getUserDetailById" resultType="com.thoughtworks.twars.bean.UserDetail">
+        SELECT * FROM userDetail WHERE userId = #{userId};
     </select>
 
-    <select id="getUserByMobilePhone" resultType="com.thoughtworks.twars.users.bean.User">
-        select * from users where mobilePhone = #{mobilePhone} LIMIT 1
+    <select id="getUserByMobilePhone" resultType="com.thoughtworks.twars.bean.User">
+        select * from users where mobilePhone = #{mobilePhone}
     </select>
 
-    <select id="getUserByEmailAndPassWord" parameterType="com.thoughtworks.twars.users.bean.User"
-            resultType="com.thoughtworks.twars.users.bean.User">
-        SELECT * FROM users WHERE email regexp binary #{email} AND password = MD5(#{password}) LIMIT 1
+    <select id="getUserByEmail" resultType="com.thoughtworks.twars.bean.User">
+        select * from users where email = #{email}
     </select>
 
-    <select id="getUserByMobilePhoneAndPassWord" parameterType="com.thoughtworks.twars.users.bean.User"
-            resultType="com.thoughtworks.twars.users.bean.User">
-        SELECT * FROM users WHERE mobilePhone = #{email} AND password = MD5(#{password}) LIMIT 1
-    </select>
-
-    <insert id="insertUser" parameterType="com.thoughtworks.twars.users.bean.User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO users(email, mobilePhone, password, createDate, role)
-        VALUES (#{email}, #{mobilePhone}, MD5(#{password}), UNIX_TIMESTAMP(), "2")
+    <insert id="insertUser" parameterType="com.thoughtworks.twars.bean.User" useGeneratedKeys="true" keyProperty="id">
+        insert into users(email,mobilePhone,password,createDate)
+        values (#{email},#{mobilePhone},MD5(#{password}),UNIX_TIMESTAMP())
     </insert>
 
     <update id="updatePassword">
         UPDATE users SET password=MD5(#{password}) WHERE id = #{id} AND password=MD5(#{oldPassword});
     </update>
 
-    <update id="resetPassword" parameterType="com.thoughtworks.twars.users.bean.User">
-        UPDATE users SET password=MD5(#{password}) WHERE binary email= #{email};
-    </update>
-
-    <select id="findUsersByUserIds" resultMap="userMap">
-        SELECT * FROM users WHERE id IN
-        <foreach item="userIds" index="index" collection="list" open="(" separator="," close=")">
-            #{userIds}
-        </foreach>
+    <select id="getUserByEmailAndPassWord" parameterType="com.thoughtworks.twars.bean.User"
+            resultType="com.thoughtworks.twars.bean.User">
+        SELECT * FROM users WHERE email regexp binary #{email} AND password = MD5(#{password}) LIMIT 1
     </select>
 
-    <select id="findUserGroupsByUserId" resultMap="groupUsersMap">
-        SELECT groupId FROM groupUsers WHERE userId = #{userId}
+    <select id="getUserByMobilePhoneAndPassWord" parameterType="com.thoughtworks.twars.bean.User"
+            resultType="com.thoughtworks.twars.bean.User">
+        SELECT * FROM users WHERE mobilePhone = #{email} AND password = MD5(#{password}) LIMIT 1
     </select>
 
-    <select id="findGroupsByGroupId" resultMap="groupMap">
-        SELECT * FROM `group` WHERE id IN
-        <foreach collection="list" item="groupIds" index="index" open="(" separator="," close=")">
-            #{groupIds}
-        </foreach>
-    </select>
 </mapper>

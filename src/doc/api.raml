@@ -1,0 +1,176 @@
+#%RAML 1.0
+title: jersey-user-demo API
+version: V1
+baseUri: http://127.0.0.1:8080/jersey-user-demo
+/register:
+  post:
+    body:
+        properties:
+          mobilePhone: string
+          email: string
+          password: string
+    responses:
+      201:
+        body:
+          application/json:
+            properties:
+              id: number
+              user:
+                properties:
+                  uri: string
+              userInfo:
+                properties:
+                  uri: string
+
+/login:
+  post:
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          email/mobilePhone: string
+          password: string
+    responses:
+      200:
+        headers:
+          token: string
+        body:
+          application/json:
+            properties:
+              id: number
+              userInfo:
+                properties:
+                  uri: string
+
+/logout:
+  post:
+    headers:
+      token: string
+    body:
+      application/json:
+        properties:
+          userId: number
+    responses:
+      201:
+
+/user:
+  description： 通过不同方式查找用户
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              properties:
+                id: integer
+                email: string
+                mobilePhone: string
+    /detail:
+       get:
+         description: 获取用户信息
+           body:
+             application/json:
+               properties:
+                 userId: integer
+                 school: string
+                 name: string
+                 gender: string
+                 major: string
+                 degree: string
+                 birthday: integer
+                 email: string
+                 mobilePhone: string
+       put:
+         description: 提交用户的详细信息
+         body:
+           application/json:
+             properties:
+               userId: integer
+               school: string
+               name: string
+               gender: string
+               major: string
+               degree: string
+         responses:
+           200:
+             body:
+               application/json:
+                 properties:
+                   userInfo:
+                     properties:
+                       uri: string
+    /password:
+       put:
+        description: 修改用户密码
+          body:
+            application/json:
+              properties:
+                oldPassword: string
+                password: string
+          responses:
+            200:
+              body:
+                application/json:
+                  properties:
+                  uri: string
+
+
+  /mobilePhone/{mobilePhone}:
+    description：|
+      通过电话号码，获取用户信息，
+      如果查找的用户不存在，则返回404，NOT_FOUND
+    get:
+      description: 通过电话号码，获取用户信息 get方式
+      queryParameters:
+        mobilePhone：
+          type: string
+          description: 用户电话号码
+          example: 17791378995
+          required: true
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                   id："1",
+                   mobilePhone："17791378995",
+                   email: "357283632@qq.com",
+                   password: "123456"
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {"message": "not found" }
+  /email/{email}:
+    description：|
+          通过邮箱，获取用户信息，
+          如果查找的用户不存在，则返回404，NOT_FOUND
+        get:
+          description: 通过邮箱，获取用户信息 get方式
+          queryParameters:
+            email：
+              type: string
+              description: 用户邮箱
+              example: "357283632@qq.com"
+              required: true
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
+                    {
+                       id："1",
+                       mobilePhone："17791378995",
+                       email: "357283632@qq.com",
+                       password: "123456"
+                    }
+            404:
+              body:
+                application/json:
+                  example: |
+                    {"message": "not found" }
+                    
+                    
+
+
