@@ -1,17 +1,10 @@
 # User-api
 
-- 查看是否有mysql镜像
-`docker images`
-如果没有执行： 
-`docker pull mysql`
-如果有直接执行
- 
-
 - 在项目根目录下执行
  ```
- ./gradlew build
- ./gradlew flywayMigrate
+ ./env-setup.sh
  ```
+ 执行完输入密码:thoughtworks
 
 - 在项目根目录下执行
 `./gradlew test`
