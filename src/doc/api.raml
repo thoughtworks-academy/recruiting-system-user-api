@@ -76,9 +76,11 @@ baseUri: http://127.0.0.1:8080/jersey-user-demo
                  gender: string
                  major: string
                  degree: string
-                 birthday: integer
                  email: string
                  mobilePhone: string
+                 schoolProvince: string
+                 schoolCity: string
+                 entranceYear:string
        put:
          description: 提交用户的详细信息
          body:
@@ -90,6 +92,9 @@ baseUri: http://127.0.0.1:8080/jersey-user-demo
                gender: string
                major: string
                degree: string
+               schoolProvince: string
+               schoolCity: string
+               entranceYear:string
          responses:
            200:
              body:
