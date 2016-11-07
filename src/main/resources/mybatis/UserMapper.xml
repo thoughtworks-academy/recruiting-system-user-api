@@ -48,17 +48,17 @@
     </insert>
 
     <update id="updatePassword">
-        UPDATE users SET password=MD5(#{password}) WHERE id = #{id} AND password=MD5(#{oldPassword});
+        UPDATE users SET password=MD5(#{password}) WHERE id = #{id} AND password=MD5(MD5(#{oldPassword}));
     </update>
 
     <select id="getUserByEmailAndPassWord" parameterType="com.thoughtworks.twars.bean.User"
             resultType="com.thoughtworks.twars.bean.User">
-        SELECT * FROM users WHERE email regexp binary #{email} AND password = MD5(#{password}) LIMIT 1
+        SELECT * FROM users WHERE email regexp binary #{email} AND password = MD5(MD5(#{password})) LIMIT 1
     </select>
 
     <select id="getUserByMobilePhoneAndPassWord" parameterType="com.thoughtworks.twars.bean.User"
             resultType="com.thoughtworks.twars.bean.User">
-        SELECT * FROM users WHERE mobilePhone = #{email} AND password = MD5(#{password}) LIMIT 1
+        SELECT * FROM users WHERE mobilePhone = #{email} AND password = MD5(MD5(#{password})) LIMIT 1
     </select>
 
 </mapper>
