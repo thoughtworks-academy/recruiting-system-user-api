@@ -21,7 +21,7 @@ public class LogoutService {
     private LoginDetailMapper loginDetailMapper;
 
     @POST
-    @ApiResponses(value = {@ApiResponse(code = 201, message = "logout successfully"),
+    @ApiResponses(value = {@ApiResponse(code = 204, message = "logout successfully"),
             @ApiResponse(code = 401, message = "logout failed")})
     public Response logoutUser(Map data) {
 
@@ -35,6 +35,6 @@ public class LogoutService {
 
         loginDetailMapper.updateLoginDetailById(loginDetail.getId());
 
-        return Response.status(Response.Status.CREATED).build();
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 }
