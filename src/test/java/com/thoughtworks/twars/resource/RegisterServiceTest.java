@@ -30,7 +30,7 @@ public class RegisterServiceTest extends TestBase{
         newUser.setPassword("123456");
         Entity entity = Entity.entity(newUser, MediaType.APPLICATION_JSON);
         Response response = target(basePath).request().post(entity);
-        assertThat(response.getStatus(), is(200));
+        assertThat(response.getStatus(), is(201));
         Map result = response.readEntity(Map.class);
 
         String userUri = (String) ((Map) result.get("user")).get("uri");

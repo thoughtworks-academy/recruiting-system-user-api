@@ -92,10 +92,8 @@ public class UserServiceTest extends TestBase {
         Response response = target(basePath + "/18/detail").request().put
                 (entityUserDetail);
 
-        assertThat(response.getStatus(), is(200));
+        assertThat(response.getStatus(), is(204));
 
-        Map result = response.readEntity(Map.class);
-        assertThat(result.get("uri"), is("userDetail/18"));
     }
 
     @Test
@@ -158,10 +156,8 @@ public class UserServiceTest extends TestBase {
         Response response = target(basePath + "/2/detail").request().put
                 (entityUserDetail);
 
-        assertThat(response.getStatus(), is(200));
+        assertThat(response.getStatus(), is(204));
 
-        Map result = response.readEntity(Map.class);
-        assertThat(result.get("uri"), is("userDetail/2"));
 
     }
 
@@ -178,6 +174,6 @@ public class UserServiceTest extends TestBase {
 
         Response response = target(basePath + "/1/password").request().put(entity);
 
-        assertThat(response.getStatus(), is(200));
+        assertThat(response.getStatus(), is(204));
     }
 }

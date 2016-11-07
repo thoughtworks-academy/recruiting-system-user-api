@@ -93,7 +93,7 @@ public class UserMapperTest extends TestBase{
     public void should_update_password() throws Exception {
 
         int id = 1;
-        String oldPassword = "25d55ad283aa400af464c76d713c07ad";
+        String oldPassword = "12345678";
         String password = "123";
 
         int result = userMapper.updatePassword(id, oldPassword, password);
@@ -101,6 +101,7 @@ public class UserMapperTest extends TestBase{
         User resultUser = userMapper.getUserById(1);
 
         assertThat(result, is(1));
+        System.out.println(resultUser.getPassword());
         assertThat(resultUser.getPassword(), is("202cb962ac59075b964b07152d234b70"));
     }
 

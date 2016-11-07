@@ -34,7 +34,7 @@ public class LogoutServiceTest extends TestBase {
         map.put("userId", 1);
 
         Response response = target(basePath).request().post(Entity.entity(map, MediaType.APPLICATION_JSON_TYPE));
-        assertThat(response.getStatus(), is(201));
+        assertThat(response.getStatus(), is(204));
     }
 
     @Test
