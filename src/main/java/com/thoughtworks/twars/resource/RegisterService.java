@@ -24,7 +24,7 @@ public class RegisterService {
     private UserMapper userMapper;
 
     @POST
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "register successfully")})
+    @ApiResponses(value = {@ApiResponse(code = 201, message = "register successfully")})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response insertUser(User user) {
@@ -41,7 +41,7 @@ public class RegisterService {
         map.put("userInfo", userInfo);
         map.put("user", theUser);
 
-        return Response.status(Response.Status.OK).entity(map).build();
+        return Response.status(Response.Status.CREATED).entity(map).build();
     }
 
 }

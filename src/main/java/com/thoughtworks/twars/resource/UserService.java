@@ -129,7 +129,7 @@ public class UserService {
 
     @PUT
     @Path("/{param}/detail")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "update one userDetail successful")})
+    @ApiResponses(value = {@ApiResponse(code = 204, message = "update one userDetail successful")})
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateUserDetail(
@@ -142,7 +142,7 @@ public class UserService {
         Map<String, Object> map = new HashMap<>();
         map.put("uri", "userDetail/" + userDetail.getUserId());
 
-        return Response.status(Response.Status.OK).entity(map).build();
+        return Response.status(Response.Status.NO_CONTENT).entity(map).build();
     }
 
     @PUT
@@ -150,7 +150,7 @@ public class UserService {
     @ApiImplicitParams(value = {@ApiImplicitParam(name = "userId", value = "int", required = true),
             @ApiImplicitParam(name = "userPasswordMap",
                     value = "include all info when update user password", required = true)})
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "update user password successful"),
+    @ApiResponses(value = {@ApiResponse(code = 204, message = "update user password successful"),
             @ApiResponse(code = 400, message = "update user password failed")})
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -168,7 +168,7 @@ public class UserService {
             Map<String, Object> map = new HashMap<>();
             map.put("uri", "users/" + userId);
 
-            return Response.status(Response.Status.OK).entity(map).build();
+            return Response.status(Response.Status.NO_CONTENT).entity(map).build();
         }
 
         return Response.status(Response.Status.BAD_REQUEST).build();
