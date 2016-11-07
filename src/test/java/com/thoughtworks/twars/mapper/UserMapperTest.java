@@ -101,7 +101,6 @@ public class UserMapperTest extends TestBase{
         User resultUser = userMapper.getUserById(1);
 
         assertThat(result, is(1));
-        System.out.println(resultUser.getPassword());
         assertThat(resultUser.getPassword(), is("202cb962ac59075b964b07152d234b70"));
     }
 
