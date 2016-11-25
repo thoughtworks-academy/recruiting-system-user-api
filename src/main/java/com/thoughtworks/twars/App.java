@@ -22,6 +22,8 @@ public class App extends ResourceConfig {
                     protected void configure() {
                         bind(userMapper).to(UserMapper.class);
                         bind(loginDetailMapper).to(LoginDetailMapper.class);
+                        bind(session).to(SqlSessionManager.class);
+
                     }
                     //将上面创建的userMapper赋给所有用UserMapper类创建的对象，就是resource文件夹中private UserMapper userMapper；自动使用了此处的usermapper
                 });

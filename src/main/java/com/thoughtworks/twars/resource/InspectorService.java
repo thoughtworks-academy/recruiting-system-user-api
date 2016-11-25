@@ -1,5 +1,6 @@
 package com.thoughtworks.twars.resource;
 
+import com.thoughtworks.twars.util.DBUtil;
 import org.apache.ibatis.session.SqlSessionManager;
 
 import javax.inject.Inject;
@@ -29,7 +30,7 @@ public class InspectorService {
             Statement st = conn.createStatement();
             st.execute("show tables");
             result.put("mysql", "connected");
-        } catch(Exception e) {
+        } catch (Exception e) {
             result.put("mysql", e.getMessage());
         }
 
@@ -37,30 +38,4 @@ public class InspectorService {
                 .Status.OK).entity(result).build();
     }
 }
-
-
-//public class InspectorResource {
-//
-//    @Inject
-//    private SqlSessionManager session;
-//
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response getConnectionInfo() {
-//        Connection conn;
-//        Map result = new HashMap<String, String>();
-//        result.put("api", "connected");
-//        try {
-//            conn = session.getConfiguration().getEnvironment().getDataSource().getConnection();
-//            Statement st = conn.createStatement();
-//            st.execute("show tables");
-//            result.put("mysql", "connected");
-//        } catch(Exception e) {
-//            result.put("mysql", e.getMessage());
-//        }
-//
-//        return Response.status(javax.ws.rs.core.Response
-//                .Status.OK).entity(result).build();
-//    }
-//}
 
